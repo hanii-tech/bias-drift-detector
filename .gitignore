@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+
+.env
+
+predictions.db
+
+logs/*.csv
+
+model/*.pkl
+
+.vscode/
