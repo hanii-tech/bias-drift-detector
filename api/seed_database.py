@@ -32,7 +32,11 @@ def seed_from_csv(csv_path="logs/predictions_log.csv"):
     init_db()
 
     # Step 2 — load the CSV (same file train_model.py already creates)
-    df = pd.read_csv(csv_path)
+    import os
+
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    csv_path = os.path.join(BASE_DIR, "logs", "predictions_log.csv")
+
     print(f"\n[1/3] Loaded {len(df)} rows from {csv_path}")
 
     # Step 3 — normalize column names to match the database schema
