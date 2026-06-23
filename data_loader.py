@@ -34,7 +34,7 @@ def fetch_predictions_from_api(limit=None):
     response = requests.get(
         config.PREDICTIONS_ENDPOINT,
         params={"limit": limit},
-        timeout=10,
+        timeout=60,
     )
     response.raise_for_status()   # raises an error if API call failed
 
