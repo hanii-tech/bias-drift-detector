@@ -37,6 +37,7 @@ def seed_from_csv(csv_path="logs/predictions_log.csv"):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     csv_path = os.path.join(BASE_DIR, "logs", "predictions_log.csv")
 
+    df = pd.read_csv(csv_path)
     print(f"\n[1/3] Loaded {len(df)} rows from {csv_path}")
 
     # Step 3 — normalize column names to match the database schema
