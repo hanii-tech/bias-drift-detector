@@ -607,7 +607,7 @@ def send_email_alert(subject, message, to_email=None):
     """
     Sends the email alert.
 
-    VERSION 2 CHANGE: sender_email and sender_password are now read
+    sender_email and sender_password are now read
     from config.py instead of being hardcoded here. This means you
     only need to set your real Gmail + App Password in ONE place
     (config.py) instead of editing this file.

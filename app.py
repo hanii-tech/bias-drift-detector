@@ -1,13 +1,10 @@
 # =============================================================
-#  app.py  —  STREAMLIT DASHBOARD  (VERSION 2 — API + DATABASE)
+#  app.py  —  STREAMLIT DASHBOARD  
 #
 #  WHAT CHANGED FROM VERSION 1:
 #    ❌ OLD: pd.read_csv("logs/predictions_log.csv")
 #    ✅ NEW: requests.get(API_URL) → DataFrame → normalize
 #
-#    Everything else (tabs, charts, alerts, SHAP, compliance
-#    report) is UNCHANGED and still calls the same utils.py
-#    functions exactly as before.
 #
 #  HOW TO RUN (in order):
 #    1. python train_model.py          ← creates predictions_log.csv
@@ -33,7 +30,7 @@
 #    ├── config.py              ← all settings (API URL, email, thresholds)
 #    ├── data_loader.py         ← fetches + normalizes API data
 #    ├── train_model.py
-#    ├── utils.py               ← UNCHANGED core logic
+#    ├── utils.py               ← core logic
 #    ├── app.py
 #    └── requirements.txt
 # =============================================================
@@ -114,7 +111,6 @@ st.sidebar.caption(
 # ─────────────────────────────────────────────────────────────
 #  LOAD DATA
 #
-#  THIS IS THE ONLY PART THAT CHANGED FROM VERSION 1.
 #  Instead of always reading a CSV, we now check which data
 #  source the user picked and load accordingly. Either path
 #  ends up calling the SAME utils.py standardization logic.
@@ -165,7 +161,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
 
 
 # ═══════════════════════════════════════════════════════════
-#  TAB 1 — OVERVIEW   (UNCHANGED FROM VERSION 1)
+#  TAB 1 — OVERVIEW   
 # ═══════════════════════════════════════════════════════════
 
 with tab1:
@@ -228,7 +224,7 @@ with tab1:
 
 
 # ═══════════════════════════════════════════════════════════
-#  TAB 2 — PSI & KS TEST   (UNCHANGED FROM VERSION 1)
+#  TAB 2 — PSI & KS TEST  
 # ═══════════════════════════════════════════════════════════
 
 with tab2:
@@ -302,7 +298,7 @@ with tab2:
 
 
 # ═══════════════════════════════════════════════════════════
-#  TAB 3 — FAIRNESS METRICS   (UNCHANGED FROM VERSION 1)
+#  TAB 3 — FAIRNESS METRICS   
 # ═══════════════════════════════════════════════════════════
 
 with tab3:
@@ -376,7 +372,7 @@ with tab3:
 
 
 # ═══════════════════════════════════════════════════════════
-#  TAB 4 — DRIFT OVER TIME   (UNCHANGED FROM VERSION 1)
+#  TAB 4 — DRIFT OVER TIME  
 # ═══════════════════════════════════════════════════════════
 
 with tab4:
@@ -447,8 +443,6 @@ with tab4:
 
 # ═══════════════════════════════════════════════════════════
 #  TAB 5 — ALERTS & COMPLIANCE REPORT
-#  (Indentation bug from Version 1 FIXED here — email block
-#   is now correctly nested inside "with tab5:")
 # ═══════════════════════════════════════════════════════════
 
 with tab5:

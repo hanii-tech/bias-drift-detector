@@ -51,7 +51,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./predictions.db")
 #
 # Deployed Streamlit dashboard:
 #   DASHBOARD_URL = "https://your-app.streamlit.app"
-DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL", "http://localhost:8501")
+DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL", "https://bias-drift-detector-system.streamlit.app/")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -62,9 +62,9 @@ DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL", "http://localhost:8501")
 #    myaccount.google.com → Security → 2-Step Verification → App Passwords
 # ─────────────────────────────────────────────────────────────
 
-EMAIL_SENDER         = os.getenv("EMAIL_SENDER",   "harinit0506@gmail.com")
-EMAIL_APP_PASSWORD   = os.getenv("EMAIL_PASSWORD", "edmc awju ybwm hyry")
-EMAIL_RECEIVER       = os.getenv("EMAIL_RECEIVER", "har3105ini@gmail.com")
+EMAIL_SENDER         = os.getenv("EMAIL_SENDER",  "sender@gmail.com")
+EMAIL_APP_PASSWORD   = os.getenv("EMAIL_PASSWORD", "app password")
+EMAIL_RECEIVER       = os.getenv("EMAIL_RECEIVER", "receiver@gmail.com")
 
 
 # ─────────────────────────────────────────────────────────────
