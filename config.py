@@ -22,7 +22,7 @@ import os
 #
 # Reads from environment variable first (useful when deployed),
 # falls back to localhost for local development.
-API_URL = os.getenv("BIAS_API_URL", "http://127.0.0.1:8000")
+API_URL = os.getenv("BIAS_API_URL", "https://bias-drift-detector.onrender.com")
 
 # Endpoint paths (do not need to change these)
 PREDICTIONS_ENDPOINT = f"{API_URL}/predictions"

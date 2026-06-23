@@ -21,10 +21,9 @@ from fastapi import FastAPI, Depends, Query
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
-import sys
-import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from api.seed_database import seed_from_csv
 from api.database import get_db, Prediction, init_db
 
 app = FastAPI(
@@ -42,13 +41,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.on_event("startup")
-def on_startup():
-    """Creates the database table automatically when the API starts."""
+def startup_event():
     init_db()
 
+    # seed only if DB is empty (IMPORTANT FIX)
+    from api.database import SessionLocal, Prediction
 
+    db = SessionLocal()
+    try:
+        exists = db.query(Prediction).first()
+        if not exists:
+            seed_from_csv()
+    finally:
+        db.close()
+    
 # ─────────────────────────────────────────────────────────────
 #  GET /health
 #
