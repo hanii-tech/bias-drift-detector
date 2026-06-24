@@ -7,6 +7,4 @@ __pycache__/
 predictions.db
 
 
-model/*.pkl
-
 .vscode/

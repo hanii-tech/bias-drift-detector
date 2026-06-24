@@ -7,8 +7,10 @@
 #  HOW TO SWITCH LOCAL <-> DEPLOYED API:
 #    Just change API_URL below. Nothing else needs to change.
 # =============================================================
-
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 # ─────────────────────────────────────────────────────────────
 #  API SETTINGS
@@ -62,9 +64,9 @@ DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL", "https://bias-drift-detector-sys
 #    myaccount.google.com → Security → 2-Step Verification → App Passwords
 # ─────────────────────────────────────────────────────────────
 
-EMAIL_SENDER         = os.getenv("EMAIL_SENDER",  "sender@gmail.com")
-EMAIL_APP_PASSWORD   = os.getenv("EMAIL_PASSWORD", "app password")
-EMAIL_RECEIVER       = os.getenv("EMAIL_RECEIVER", "receiver@gmail.com")
+EMAIL_SENDER         = os.getenv("EMAIL_SENDER")
+EMAIL_APP_PASSWORD   = os.getenv("EMAIL_APP_PASSWORD")
+EMAIL_RECEIVER       = os.getenv("EMAIL_RECEIVER")
 
 
 # ─────────────────────────────────────────────────────────────
