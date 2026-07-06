@@ -309,6 +309,4 @@ bias_drift_detector/
 
 Harini T 
 
-Aspiring Software Engineer with AI and Data Focus
-
-Focused on building AI-powered, data-driven software applications and monitoring systems.
+Aspiring Software Engineer with a focus on AI and Data-Driven Applications.
