@@ -9,6 +9,7 @@
 # =============================================================
 from dotenv import load_dotenv
 import os
+import streamlit as st
 
 load_dotenv()
 
@@ -53,7 +54,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./predictions.db")
 #
 # Deployed Streamlit dashboard:
 #   DASHBOARD_URL = "https://your-app.streamlit.app"
-DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL", "https://bias-drift-detector-system.streamlit.app/")
+DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL","https://bias-drift-detector-system.streamlit.app/")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -64,10 +65,9 @@ DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL", "https://bias-drift-detector-sys
 #    myaccount.google.com → Security → 2-Step Verification → App Passwords
 # ─────────────────────────────────────────────────────────────
 
-EMAIL_SENDER         = os.getenv("EMAIL_SENDER")
-EMAIL_APP_PASSWORD   = os.getenv("EMAIL_APP_PASSWORD")
-EMAIL_RECEIVER       = os.getenv("EMAIL_RECEIVER")
-
+EMAIL_SENDER = st.secrets.get("EMAIL_SENDER", os.getenv("EMAIL_SENDER"))
+EMAIL_APP_PASSWORD = st.secrets.get("EMAIL_APP_PASSWORD", os.getenv("EMAIL_APP_PASSWORD"))
+EMAIL_RECEIVER = st.secrets.get("EMAIL_RECEIVER", os.getenv("EMAIL_RECEIVER"))
 
 # ─────────────────────────────────────────────────────────────
 #  DRIFT & FAIRNESS THRESHOLDS
