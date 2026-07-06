@@ -288,17 +288,17 @@ bias_drift_detector/
 ### Overview Tab
 ![Overview Tab](screenshots/dashboard_overview.png)
 
-### Drift Detection Tab
-![Drift Detection Tab](screenshots/drift_detection.png)
+### PSI & KS Test Tab
+![PSI & KS Test Tab](screenshots/psi_ks_test.png)
 
 ### Fairness Metrics Tab
 ![Fairness Metrics Tab](screenshots/fairness_metrics.png)
 
 ### Alerts & Report
-![Alert&Complaince Tab](screenshots/alert_&_report.png)
+![Alert&Complaince Tab](screenshots/alerts_&_report.png)
 
 ### SHAP Explainability Tab
-![SHAP Explainability Tab](screenshots/SHAP_explainablity%20.png)
+![SHAP Explainability Tab](screenshots/SHAP_explainability.png)
 
 ### Emali Alert
 ![Email Alert](screenshots/email_alert_screenshot.png)
