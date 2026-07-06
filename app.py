@@ -291,7 +291,7 @@ with tab2:
     k1, k2 = st.columns(2)
     k1.metric("KS Statistic", ks["ks_statistic"])
     k2.metric("p-value",      ks["p_value"])
-    if ks["p_value"] and ks["p_value"] < 0.05:
+    if ks["p_value"] is not None and ks["p_value"] < 0.05:
         st.error(ks["result"])
     else:
         st.success(ks["result"])

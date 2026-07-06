@@ -210,62 +210,130 @@ def run_ks_test(df):
 
 def compute_fairness_metrics(df):
     """
-    Computes all fairness metrics comparing Male vs Female.
-    Uses Gender (capital G), predicted, actual columns.
+    Computes fairness metrics comparing Male vs Female.
+
+    Metrics:
+    - Demographic Parity Difference (DPD)
+    - Equalized Odds Difference (EOD)
+    - Disparate Impact Ratio (DIR)
+    - Average Odds Difference (AOD)
+
+    Required columns:
+    - Gender
+    - predicted (0/1)
+    - actual (0/1)
     """
+
     results = {}
 
-    male   = df[df["Gender"] == "Male"]
+    # Split by demographic group
+    male = df[df["Gender"] == "Male"]
     female = df[df["Gender"] == "Female"]
 
-    # Positive prediction rates
-    m_pos = male["predicted"].mean()   if len(male)   > 0 else 0.0
+    # -----------------------------
+    # Positive Prediction Rates
+    # -----------------------------
+    m_pos = male["predicted"].mean() if len(male) > 0 else 0.0
     f_pos = female["predicted"].mean() if len(female) > 0 else 0.0
 
-    results["Male Count"]           = len(male)
-    results["Female Count"]         = len(female)
-    results["Male Positive Rate"]   = round(m_pos, 4)
+    results["Male Count"] = len(male)
+    results["Female Count"] = len(female)
+
+    results["Male Positive Rate"] = round(m_pos, 4)
     results["Female Positive Rate"] = round(f_pos, 4)
 
-    # ── 1. DPD ──
+    # -----------------------------
+    # 1. Demographic Parity Difference (DPD)
+    # -----------------------------
     dpd = abs(m_pos - f_pos)
+
     results["Demographic Parity Difference"] = round(dpd, 4)
+
     results["DPD Status"] = (
-        "✅ Fair (< 0.10)"          if dpd < 0.10 else
-        "⚠️ Moderate (0.10–0.20)"   if dpd < 0.20 else
+        "✅ Fair (< 0.10)"
+        if dpd < 0.10 else
+        "⚠️ Moderate (0.10–0.20)"
+        if dpd < 0.20 else
         "🚨 Biased (> 0.20)"
     )
 
-    # ── 2. EOD ──
-    m_tp = male[male["actual"]     == 1]["predicted"].mean() if len(male[male["actual"]==1])     > 0 else 0.0
-    f_tp = female[female["actual"] == 1]["predicted"].mean() if len(female[female["actual"]==1]) > 0 else 0.0
-    eod  = abs(m_tp - f_tp)
+    # -----------------------------
+    # Prepare Positive/Negative Groups
+    # -----------------------------
+    male_positive = male[male["actual"] == 1]
+    female_positive = female[female["actual"] == 1]
 
-    results["Male True Positive Rate"]   = round(m_tp, 4)
-    results["Female True Positive Rate"] = round(f_tp, 4)
-    results["Equalized Odds Difference"] = round(eod,  4)
+    male_negative = male[male["actual"] == 0]
+    female_negative = female[female["actual"] == 0]
+
+    # -----------------------------
+    # True Positive Rate (TPR)
+    # -----------------------------
+    m_tpr = (
+        male_positive["predicted"].mean()
+        if len(male_positive) > 0 else 0.0
+    )
+
+    f_tpr = (
+        female_positive["predicted"].mean()
+        if len(female_positive) > 0 else 0.0
+    )
+
+    # -----------------------------
+    # False Positive Rate (FPR)
+    # -----------------------------
+    m_fpr = (
+        male_negative["predicted"].mean()
+        if len(male_negative) > 0 else 0.0
+    )
+
+    f_fpr = (
+        female_negative["predicted"].mean()
+        if len(female_negative) > 0 else 0.0
+    )
+
+    results["Male True Positive Rate"] = round(m_tpr, 4)
+    results["Female True Positive Rate"] = round(f_tpr, 4)
+
+    results["Male False Positive Rate"] = round(m_fpr, 4)
+    results["Female False Positive Rate"] = round(f_fpr, 4)
+
+    # -----------------------------
+    # 2. Equalized Odds Difference (EOD)
+    # -----------------------------
+    eod = (abs(m_tpr - f_tpr) + abs(m_fpr - f_fpr)) / 2
+
+    results["Equalized Odds Difference"] = round(eod, 4)
+
     results["EOD Status"] = (
-        "✅ Fair (< 0.10)"          if eod < 0.10 else
-        "⚠️ Moderate (0.10–0.20)"   if eod < 0.20 else
+        "✅ Fair (< 0.10)"
+        if eod < 0.10 else
+        "⚠️ Moderate (0.10–0.20)"
+        if eod < 0.20 else
         "🚨 Biased (> 0.20)"
     )
 
-    # ── 3. DIR ──
-    dir_r = (f_pos / m_pos) if m_pos > 0 else 0.0
-    results["Disparate Impact Ratio"] = round(dir_r, 4)
+    # -----------------------------
+    # 3. Disparate Impact Ratio (DIR)
+    # -----------------------------
+    dir_ratio = (f_pos / m_pos) if m_pos > 0 else 0.0
+
+    results["Disparate Impact Ratio"] = round(dir_ratio, 4)
+
     results["DIR Status"] = (
-        "✅ Fair (0.80–1.20)"           if 0.80 <= dir_r <= 1.20 else
+        "✅ Fair (0.80–1.20)"
+        if 0.80 <= dir_ratio <= 1.20 else
         "🚨 Biased (outside 0.80–1.20)"
     )
 
-    # ── 4. AOD ──
-    m_fp = male[male["actual"]     == 0]["predicted"].mean() if len(male[male["actual"]==0])     > 0 else 0.0
-    f_fp = female[female["actual"] == 0]["predicted"].mean() if len(female[female["actual"]==0]) > 0 else 0.0
-    aod  = abs(((m_tp - f_tp) + (m_fp - f_fp)) / 2)
+    # -----------------------------
+    # 4. Average Odds Difference (AOD)
+    # -----------------------------
+    aod = abs(((m_tpr - f_tpr) + (m_fpr - f_fpr)) / 2)
+
     results["Average Odds Difference"] = round(aod, 4)
 
     return results
-
 
 # ─────────────────────────────────────────────────────────────
 #  SECTION 7 — BIAS DRIFT OVER TIME
