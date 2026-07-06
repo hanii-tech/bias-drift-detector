@@ -54,7 +54,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./predictions.db")
 #
 # Deployed Streamlit dashboard:
 #   DASHBOARD_URL = "https://your-app.streamlit.app"
-DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL","https://bias-drift-detector-system.streamlit.app/")
+DASHBOARD_URL = os.getenv("BIAS_DASHBOARD_URL","https://bias-drift-detector.streamlit.app/")
 
 
 # ─────────────────────────────────────────────────────────────

@@ -237,7 +237,7 @@ API URL: https://bias-drift-detector.onrender.com
 
 Hosted using Streamlit Community Cloud.
 
-Dashboard URL:https://bias-drift-detector-system.streamlit.app/
+Dashboard URL: https://bias-drift-detector.streamlit.app/
 
 ---
 
