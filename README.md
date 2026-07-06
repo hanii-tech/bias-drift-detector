@@ -301,7 +301,7 @@ bias_drift_detector/
 ![SHAP Explainability Tab](screenshots/SHAP_explainability.png)
 
 ### Emali Alert
-![Email Alert](screenshots/email_alert_screenshot.png)
+![Email Alert](screenshots/email_alert.png)
 
 ---
 
