@@ -219,23 +219,40 @@ Dashboard URL: https://bias-drift-detector-system.streamlit.app
 ## Project Structure
 
 ```text
-bias_drift_detector/
+bias-drift-detector/
+│
+├── .devcontainer/
+│   └── devcontainer.json
 │
 ├── api/
-│   ├── main.py
+│   ├── __init__.py
 │   ├── database.py
+│   ├── main.py
 │   └── seed_database.py
+│
+├── data/
+│   └── hr_dataset.csv
+│
+├── database/
 │
 ├── logs/
 │   └── predictions_log.csv
 │
+├── model/
+│   ├── feature_names.pkl
+│   ├── model.pkl
+│   ├── scaler.pkl
+│   └── train_model.py
+│
+├── monitoring/
+│   ├── data_loader.py
+│   └── utils.py
+│
 ├── app.py
 ├── config.py
-├── data_loader.py
-├── utils.py
-├── train_model.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
