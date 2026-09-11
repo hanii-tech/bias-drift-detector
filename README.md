@@ -58,43 +58,18 @@ This project simulates how organizations monitor deployed AI models in real-worl
 
 ## System Architecture
 
-![System Architecture](screenshots/system_architecture.png)
+Prediction Logs (CSV)
+↓
+SQLite Database
+↓
+FastAPI Backend
+↓
+Streamlit Dashboard
+↓
+Bias & Drift Analysis
+↓
+Email Alerts + Compliance Reports
 
-### HR Dataset
-
-The system begins with an HR dataset containing employee information such as age, department, job satisfaction, salary, gender, and attrition status. This dataset serves as the input for training the prediction model.
-
-### Train AI Model (Logistic Regression)
-
-A Logistic Regression model is trained using the HR dataset to predict employee attrition. The trained model, feature scaler, and feature names are saved for later use in prediction and explainability.
-
-### Prediction Log
-
-After training, the model generates prediction logs containing prediction probabilities, predicted labels, actual outcomes, and demographic attributes. These logs simulate the outputs produced by an AI model.
-
-### Data Preprocessing
-
-The prediction logs are cleaned and prepared for analysis by handling missing values, formatting data types, and organizing the information required for bias and drift detection.
-
-### Drift Detection (PSI & KS Test)
-
-The system detects changes in prediction distributions over time using Population Stability Index (PSI) and the Kolmogorov–Smirnov (KS) Test. These statistical techniques identify whether significant data or prediction drift has occurred.
-
-### Fairness Evaluation
-
-Fairness metrics such as Demographic Parity Difference, Disparate Impact Ratio, and Equal Opportunity Difference are calculated to evaluate whether the AI model treats different demographic groups fairly.
-
-### SHAP Explainability
-
-SHAP (SHapley Additive exPlanations) is used to explain the model's predictions by identifying which features contribute the most to prediction outcomes and potential fairness differences.
-
-### Alert Generation (Email Alerts)
-
-When the calculated drift or fairness metrics exceed predefined thresholds, the system automatically generates an email alert to notify users of potential bias drift requiring attention.
-
-### Streamlit Dashboard
-
-The final results are presented through an interactive Streamlit dashboard, where users can monitor drift statistics, fairness metrics, SHAP explanations, alert status, and download compliance reports.
 ---
 
 ## Technology Stack
@@ -237,7 +212,7 @@ API URL: https://bias-drift-detector.onrender.com
 
 Hosted using Streamlit Community Cloud.
 
-Dashboard URL: https://bias-drift-detector.streamlit.app/
+Dashboard URL: https://bias-drift-detector-system.streamlit.app
 
 ---
 
@@ -277,37 +252,10 @@ bias_drift_detector/
 
 ---
 
-## Screenshots 
-
-### Code overview
-![Code Overview](screenshots/code_overview.png)
-
-### Generated Prediction Log
-![Prediction Log](screenshots/prediction_log.png)
-
-### Overview Tab
-![Overview Tab](screenshots/dashboard_overview.png)
-
-### PSI & KS Test Tab
-![PSI & KS Test Tab](screenshots/psi_ks_test.png)
-
-### Fairness Metrics Tab
-![Fairness Metrics Tab](screenshots/fairness_metrics.png)
-
-### Alerts & Report
-![Alert&Complaince Tab](screenshots/alerts_&_report.png)
-
-### SHAP Explainability Tab
-![SHAP Explainability Tab](screenshots/SHAP_explainability.png)
-
-### Emali Alert
-![Email Alert](screenshots/email_alert.png)
-
-
----
-
 ## Author
 
 Harini T 
 
-Aspiring Software Engineer with a focus on AI and Data-Driven Applications.
+Aspiring Software Engineer with AI and Data Focus
+
+Focused on building AI-powered, data-driven software applications and monitoring systems.
