@@ -234,7 +234,8 @@ bias-drift-detector/
 │   └── hr_dataset.csv
 │
 ├── database/
-│
+│   └── predictions.db
+|
 ├── logs/
 │   └── predictions_log.csv
 │
